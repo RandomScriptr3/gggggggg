@@ -196,6 +196,8 @@ UIPadding_2.PaddingTop = UDim.new(0, 7)
     FrameAlle.Position = UDim2.new(0.225749552, 0, 0, 0)
     FrameAlle.Size = UDim2.new(0, 439, 0, 310)
     FrameAlle.ScrollBarThickness = 6
+    FrameAlle.CanvasSize = UDim2.new(0, 0, 0, 0)
+    FrameAlle.AutomaticCanvasSize = Enum.AutomaticSize.Y
     FrameAlle.Visible = false
     
     UIListLayout_2.Parent = FrameAlle
@@ -282,7 +284,7 @@ UIPadding_2.PaddingTop = UDim.new(0, 7)
     LabelText.Text = txt
     end
     
-    function all:Toggle(txt,bol,togglecallback)
+    function all:Toggle(txt,togglecallback)
         local Toggle = Instance.new("Frame")
         local ToggleFrame = Instance.new("Frame")
         local UICorner = Instance.new("UICorner")
