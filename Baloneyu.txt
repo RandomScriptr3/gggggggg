@@ -648,13 +648,6 @@ SliderInner.BackgroundColor3 = Color3.fromRGB(153, 27, 69)
 SliderInner.Position = UDim2.new(0, 0, -0.400000006, 0)
 SliderInner.Size = UDim2.new(0, 296, 0, 6)
 
-SliderBox.FocusLost:Connect(function()
-	pcall(function()
-		callback(SliderBox.Text)
-	end)
-	SliderInner.Size = UDim2.new(0, math.clamp(mouse.X - SliderInner.AbsolutePosition.X, 0, 296), 0, 6)
-end)
-
 UICorner_4.Parent = SliderInner
 	-----Main Code-----
 
