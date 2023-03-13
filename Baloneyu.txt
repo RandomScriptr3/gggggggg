@@ -649,10 +649,11 @@ SliderInner.Position = UDim2.new(0, 0, -0.400000006, 0)
 SliderInner.Size = UDim2.new(0, 296, 0, 6)
 
 SliderBox.FocusLost:Connect(function()
+	SliderBox.Text = tostring(math.clamp(tonumber(SliderBox.Text), minvalue, maxvalue))
 	pcall(function()
-		callback(math.clamp(tonumber(SliderBox.Text), minvalue, maxvalue))
+		callback(tonumber(SliderBox.Text))
 	end)
-	SliderInner.Size = UDim2.new(math.clamp(tonumber(SliderBox.Text), minvalue, maxvalue) / maxvalue, 0, 0, 6)
+	SliderInner.Size = UDim2.new(tonumber(SliderBox.Text)) / maxvalue, 0, 0, 6)
 end)
 
 UICorner_4.Parent = SliderInner
