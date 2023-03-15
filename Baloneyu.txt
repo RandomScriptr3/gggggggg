@@ -1,11 +1,10 @@
---เปลี่ยน logo ได้ที่ บรรทัด 140
 if game.CoreGui:FindFirstChild("UICopied") then
     game.CoreGui:FindFirstChild("UICopied"):Destroy()
 end
 
 function dragify(Frame)
 dragToggle = nil
-dragSpeed = .25 -- You can edit this.
+dragSpeed = .25
 dragInput = nil
 dragStart = nil
 dragPos = nil
@@ -55,8 +54,9 @@ local TabList = Instance.new("Frame")
 local UICorner_2 = Instance.new("UICorner")
 local Banner = Instance.new("Frame")
 local Text = Instance.new("TextLabel")
+local UIText = Instance.new("UITextSizeConstraint")
+local UIText_2 = Instance.new("UITextSizeConstraint")
 local Desc = Instance.new("TextLabel")
-local Imagelogo = Instance.new("ImageButton")
 local Tabl = Instance.new("ScrollingFrame")
 local FrameAll = Instance.new("Folder")
 
@@ -110,36 +110,35 @@ Text.Name = "Text"
 Text.Parent = Banner
 Text.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Text.BackgroundTransparency = 1.000
-Text.Position = UDim2.new(0, 39, 0, 0)
-Text.Size = UDim2.new(0, 78, 0, 26)
+Text.Position = UDim2.new(0, 0, 0, 0)
+Text.Size = UDim2.new(1, 0, 0, 26)
 Text.Font = Enum.Font.SourceSansBold
 Text.Text = txt
 Text.TextColor3 = Color3.fromRGB(181, 16, 68)
 Text.TextSize = 16.000
-Text.TextXAlignment = Enum.TextXAlignment.Left
+Text.TextXAlignment = Enum.TextXAlignment.Middle
+Text.TextScaled = true
+Text.TextWrapped = true
+UIText.Parent = Text
 
 Desc.Name = "Desc"
 Desc.Parent = Banner
 Desc.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Desc.BackgroundTransparency = 1.000
-Desc.Position = UDim2.new(0, 39, 0, 19)
-Desc.Size = UDim2.new(0, 78, 0, 24)
+Desc.Position = UDim2.new(0, 0, 0, 25)
+Desc.Size = UDim2.new(1, 0, 0, 20)
 Desc.Font = Enum.Font.SourceSansBold
 Desc.Text = desc
 Desc.TextColor3 = Color3.fromRGB(132, 132, 132)
 Desc.TextSize = 13.000
 Desc.TextWrapped = true
-Desc.TextXAlignment = Enum.TextXAlignment.Left
+Desc.TextXAlignment = Enum.TextXAlignment.Middle
+Desc.TextScaled = true
+Desc.TextWrapped = true
+UIText_2.Parent = Desc
 
-Imagelogo.Name = "Imagelogo"
-Imagelogo.Parent = Banner
-Imagelogo.BackgroundTransparency = 1.000
-Imagelogo.Position = UDim2.new(0, 8, 0, 9)
-Imagelogo.Size = UDim2.new(0, 25, 0, 25)
-Imagelogo.ZIndex = 2
-Imagelogo.Image = "rbxassetid://8324568288" --เปลี่ยนรูป Logo ตรงนี้
-Imagelogo.ImageRectOffset = Vector2.new(50, 800)
-Imagelogo.ImageRectSize = Vector2.new(50, 50)
+UIText.MaxTextSize = 16
+UIText_2.MaxTextSize = 13
 
 Tabl.Name = "Tabl"
 Tabl.Parent = TabList
