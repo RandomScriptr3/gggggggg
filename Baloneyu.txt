@@ -332,6 +332,9 @@ UIPadding_2.PaddingTop = UDim.new(0, 7)
         ToggleText.TextColor3 = Color3.fromRGB(153, 27, 69)
         ToggleText.TextSize = 16.000
         ToggleText.TextXAlignment = Enum.TextXAlignment.Left
+	
+	local toggled = false
+	
         check.MouseButton1Click:Connect(function()
             if toggled then
                  TweenService:Create(check, TweenInfo.new(0.12, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {ImageTransparency = 1}):Play()
