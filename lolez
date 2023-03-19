@@ -1,0 +1,615 @@
+local lp = game.Players.LocalPlayer
+
+for _, deathblock in pairs(workspace:GetChildren()) do
+    if deathblock:IsA("Part") then
+        if string.find(deathblock.Name, "ded") or string.find(deathblock.Name, "Anti") or string.find(deathblock.Name, "Barrier") or deathblock.Name == "Origo" then
+            deathblock.CanCollide = false
+            deathblock.CanTouch = false
+        end
+    end
+end
+
+local mavblock = Instance.new("Part", workspace)
+mavblock.Size = Vector3.new(3000, 10, 3000)
+mavblock.Position = Vector3.new(0, -20, 0)
+mavblock.Anchored = true
+mavblock.Transparency = 1
+
+local tavblock = Instance.new("Part", workspace)
+tavblock.Size = Vector3.new(3000, 10, 3000)
+tavblock.Position = Vector3.new(3480, 67, -7)
+tavblock.Anchored = true
+tavblock.Transparency = 1
+
+local bblock = Instance.new("Part", game.Workspace)
+bblock.Position = Vector3.new(1200, 24, 440)
+bblock.Size = Vector3.new(50,1,50)
+bblock.Anchored = true
+bblock.Transparency = 1
+
+local golden = false
+
+local cod = workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"]
+local brazil = workspace.Lobby.brazil
+
+local sgn = {}
+local sgr = {}
+
+local animpack = game.ReplicatedStorage.AnimationPack
+local anims = {
+    ["SPASM"] = animpack.Spasm, 
+	["HEADLESS"] = animpack.Headless, 
+	["GROOVE"] = animpack.Groove, 
+	["FLOSS"] = animpack.Floss, 
+	["PARKER"] = animpack.Parker, 
+	["L"] = animpack.L, 
+	["KICK"] = animpack.Kick, 
+	["LAUGH"] = animpack.Laugh, 
+	["THRILLER"] = animpack.Thriller, 
+	["HELICOPTER"] = animpack.Helicopter
+}
+
+local settings = {
+    ["slap aura"] = false,
+    ["anti void"] = false,
+    ["anti nametag"] = false,
+    ["anti squid"] = false,
+    ["anti mail"] = false,
+    ["tournament antivoid"] = false,
+    ["anti reaper"] = false,
+    ["tycoon autopress"] = false,
+    ["auto jetorb"] = false,
+    ["auto slapple"] = false,
+    ["anti lighting"] = false,
+    ["anti cod"] = false,
+    ["auto kick"] = false,
+    ["anti identity"] = false,
+    ["animations"] = false,
+    ["anti megarock"] = false,
+    ["anti defense"] = false,
+    ["anti rocky"] = false,
+    ["anti pusher"] = false,
+    ["anti stun"] = false,
+    ["anti hando"] = false,
+    ["anti brick"] = false,
+    ["anti bubble"] = false,
+    ["anti jack"] = false,
+    ["anti ice"] = false,
+    ["inf golden"] = false,
+    ["anti brazil"] = false,
+    ["zahand kick"] = false,
+    ["anti cheeky"] = false
+}
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RandomScriptr3/gggggggg/main/Baloneyu.txt"))()
+local GUI = library:new("ToxCub Slap Battles GUI", "Free scripts")
+
+local lex = GUI:Tap("Local exploits")
+lex:Label("Anti exploits")
+
+lex:Toggle("Main anti void", function(val)
+    settings["anti void"] = val
+end)
+lex:Toggle("Tournament anti void", function(val)
+    settings["tournament antivoid"] = val
+end)
+lex:Toggle("Anti reaper", function(val)
+    settings["anti reaper"] = val
+end)
+lex:Toggle("Anti nametag", function(val)
+    settings["anti nametag"] = val
+end)
+lex:Toggle("Anti squid", function(val)
+    settings["anti squid"] = val
+end)
+lex:Toggle("Anti mail", function(val)
+    settings["anti mail"] = val
+end)
+lex:Toggle("Anti COD", function(val)
+    settings["anti cod"] = val
+end)
+lex:Toggle("Anti megarock", function(val)
+    settings["anti megarock"] = val
+end)
+lex:Toggle("Anti defense", function(val)
+    settings["anti defense"] = val
+end)
+lex:Toggle("Anti rocky", function(val)
+    settings["anti rocky"] = val
+end)
+lex:Toggle("Anti pusher", function(val)
+    settings["anti pusher"] = val
+end)
+lex:Toggle("Anti stun", function(val)
+    settings["anti stun"] = val
+end)
+lex:Toggle("Anti za hando", function(val)
+    settings["anti zahando"] = val
+end)
+lex:Toggle("Anti brick", function(val)
+    settings["anti brick"] = val
+end)
+lex:Toggle("Anti bubble", function(val)
+    settings["anti bubble"] = val
+end)
+lex:Toggle("Anti hallow jack", function(val)
+    settings["anti jack"] = val
+end)
+lex:Toggle("Anti ice", function(val)
+    settings["anti ice"] = val
+end)
+lex:Toggle("Anti brazil portal", function(val)
+    settings["anti brazil"] = val
+end)
+lex:Toggle("Anti cheeky", function(val)
+    settings["anti cheeky"] = val
+end)
+lex:Toggle("Auto kick on mod join", function(val)
+    settings["auto kick"] = val
+end)
+lex:Line()
+lex:Label("Glove exploits")
+
+lex:Toggle("Slap aura", function(val)
+    settings["slap aura"] = val
+end)
+lex:Toggle("Tycoon autopress", function(val)
+    settings["tycoon autopress"] = val
+end)
+lex:Toggle("Infinite golden", function(val)
+    settings["inf golden"] = val
+end)
+lex:Toggle("Kick on zahando", function(val)
+    settings["zahand kick"] = val
+end)
+lex:Line()
+lex:Label("Character exploits")
+lex:Slider("WalkSpeed", 0, 150, 20, function(val)
+    pcall(function()
+        lp.Character.Humanoid.WalkSpeed = val
+    end)
+end)
+lex:Slider("Jumppower", 0, 150, 50, function(val)
+    pcall(function()
+        lp.Character.Humanoid.JumpPower = val
+    end)
+end)
+lex:Toggle("Auto remove identity", function(val)
+    settings["anti identity"] = val
+end)
+lex:Toggle("Enable animations", function(val)
+    settings["animations"] = val
+end)
+lex:Button("Remove identity", function()
+    pcall(function()
+        for _, acces in pairs(lp.Character:GetChildren()) do
+            if acces:IsA("Accessory") or acces:IsA("Shirt") or acces:IsA("Pants") or acces:IsA("ShirtGraphic") then
+                acces:Destroy()
+            end
+        end
+    end)
+end)
+
+local trolls = GUI:Tap("Troll exploits")
+trolls:Label("Buttons")
+trolls:Button("Spam reaper soul", function()
+    for i=0,50 do
+        pcall(function()
+            game.ReplicatedStorage.HumanoidDied:FireServer(nil, false)
+        end)
+    end
+end)
+trolls:Button("Destroy all tycoons", function()
+    for _, tycoon in pairs(workspace:GetChildren()) do
+        if string.find(tycoon.Name, "ÅTycoon") then
+            for i=0,100 do
+                fireclickdetector(tycoon.Destruct.ClickDetector, 0)
+                fireclickdetector(tycoon.Destruct.ClickDetector, 1)
+            end
+        end
+    end
+end)
+trolls:Button("Delete auras", function()
+    if lp.Backpack:FindFirstChildOfClass("Tool") then
+        lp.Backpack:FindFirstChildOfClass("Tool").Parent = lp.Character
+    end
+    for _, part in pairs(lp.Character:GetDescendants()) do
+        if part:IsA("ParticleEmitter") or string.find(part.ClassName, "Light") or part.Name == "FourKillSong" or part:IsA("Highlight") or part:IsA("Model") and not part:IsA("Tool") then
+            part:Destroy()
+        end
+    end
+end)
+
+local tps = GUI:Tap("Teleports")
+tps:Button("COD (cube of death)", function()
+    pcall(function()
+        lp.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-259, -5,  2))
+    end)
+end)
+tps:Button("Slapple island", function()
+    pcall(function()
+        lp.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-392, 51, -15))
+    end)
+end)
+tps:Button("Rainbow Cloud", function()
+    pcall(function()
+        lp.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-126, -5, 123))
+    end)
+end)
+tps:Button("Middle island", function()
+    pcall(function()
+        lp.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-3, -5, 5))
+    end)
+end)
+tps:Button("Moai island", function()
+    pcall(function()
+        lp.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(212, -12, -3))
+    end)
+end)
+tps:Button("Left island", function()
+    pcall(function()
+        lp.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-4, -5, 208))
+    end)
+end)
+tps:Button("Right island", function()
+    pcall(function()
+        lp.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-2, -5, -202))
+    end)
+end)
+tps:Button("Plate", function()
+    pcall(function()
+        lp.Character.HumanoidRootPart.CFrame = workspace.Arena.Plate.CFrame + Vector3.new(0, 5, 0)
+    end)
+end)
+tps:Button("Safe zone", function()
+    pcall(function()
+        lp.Character.HumanoidRootPart.CFrame = bblock.CFrame + Vector3.new(0, 5, 0)
+    end)
+end)
+
+local bh = GUI:Tap("Badge helper")
+bh:Label("Buttons")
+bh:Button("Get fish (70 slaps needed and takes 1 hour)", function()
+    if lp.leaderstats.Slaps.Value >= 70 then
+        pcall(function()
+            if lp.Character:FindFirstChild("entered") then
+                lp.Character.Humanoid.Health = 0
+            end
+            task.wait(6)
+            fireclickdetector(workspace.Lobby.ZZZZZZZ.ClickDetector, 0)
+            fireclickdetector(workspace.Lobby.ZZZZZZZ.ClickDetector, 1)
+            if not lp.Character:FindFirstChild("entered") then
+                firetouchinterest(lp.Character.Head, workspace.Lobby.Teleport1, 0)
+                firetouchinterest(lp.Character.Head, workspace.Lobby.Teleport1, 1)
+            end
+            task.wait(1)
+            lp.Character.HumanoidRootPart.CFrame = bblock.CFrame + Vector3.new(0, 10, 0)
+            game.ReplicatedStorage.ZZZZZZZSleep:FireServer()
+            task.wait(1)
+            lp.Character.HumanoidRootPart.snoringsound:Destroy()
+        end)
+    end
+end)
+
+bh:Line()
+bh:Label("Toggles")
+bh:Toggle("Auto grab jet", function(val)
+    settings["auto jetorb"] = val
+end)
+bh:Toggle("Auto grab phase", function(val)
+    settings["auto phaseorb"] = val
+end)
+
+local af = GUI:Tap("Auto farm")
+af:Label("Requires nothing (toggles)")
+af:Toggle("Auto collect slapple", function(val)
+    settings["auto slapple"] = val
+end)
+
+local qog = GUI:Tap("Quality of game")
+qog:Label("Buttons")
+qog:Button("Delete lighting effects", function()
+    for _, thing in pairs(game.Lighting:GetChildren()) do
+        if thing.Name ~= "Sky" then
+            thing:Destroy()
+        end
+    end
+end)
+
+qog:Line()
+qog:Label("Toggles")
+qog:Toggle("Auto remove lighting effects", function(val)
+    settings["anti lighting"] = val
+end)
+
+local hook
+hook = hookmetamethod(game, "__namecall", function(...)
+    local args = {...}
+    local self = args[1]
+    if tostring(self) == "AdminGUI" or tostring(self) == "WalkSpeedChanged" or tostring(self) == "Ban" then
+        return nil
+    end
+    if settings["inf golden"] == true then
+        if tostring(self) == "GoldenHit" then
+            args[3] = true
+            return hook(unpack(args))
+        end
+        if tostring(self) == "Goldify" then
+            if args[3] then
+                return nil
+            end
+        end
+    end
+    if settings["zahand kick"] == true then
+        if tostring(self) == "Erase" then
+            coroutine.wrap(function()
+                pcall(function()
+                    task.wait(0.45)
+                    lp.Character.HumanoidRootPart.CFrame = CFrame.new(brazil.portal.Position + Vector3.new(0, 5, 0))
+                end)
+            end)()
+        end
+    end
+    return hook(...)
+end)
+
+local currentanim
+
+lp.Chatted:Connect(function(msg)
+    pcall(function()
+        local check = string.split(string.lower(msg), "/e ")[2]
+        if check and settings["animations"] == true then
+            local anim = anims[string.upper(check)]
+            if anim then
+                game.ReplicatedStorage.AnimationSound:FireServer(table.find(anims, string.upper(check)))
+                if currentanim then
+                    currentanim:Stop()
+                end
+                local a = lp.Character.Humanoid:LoadAnimation(anim)
+                a.Priority = Enum.AnimationPriority.Idle
+                a:Play()
+                currentanim = a
+            end
+        end
+    end)
+end)
+
+while task.wait() do
+    pcall(function()
+    local hm = lp.Character:FindFirstChildOfClass("Humanoid")
+        if hm.MoveDirection ~= Vector3.new(0, 0, 0) then
+            if currentanim then
+                currentanim:Stop()
+            end
+        end
+        if settings["slap aura"] == true then
+            local closest = 25
+            local lstedplrs = {}
+            for _, player in pairs(game.Players:GetChildren()) do
+                if player ~= lp then
+                    local rock = player.Character:FindFirstChild("rock")
+                    local uno = player.Character.Head:FindFirstChild("UnoReverseCard")
+                    local dist = lp:DistanceFromCharacter(player.Character.PrimaryPart.Position)
+                    if dist < closest and not rock and not uno then
+                        table.insert(lstedplrs, player)
+                    end
+                end
+            end
+            local glov = lp.Character:FindFirstChildOfClass("Tool") or lp.Backpack:FindFirstChildOfClass("Tool")
+            if glov then
+                if not table.find(sgn, glov.Name) then
+                    local d = decompile(glov.LocalScript)
+                    local sgtl = false
+                    local repline = ""
+                    for _, line in pairs(string.split(d, "\n")) do
+                        if string.split(line, 'script.Parent:WaitForChild("Glove").Touched')[2] then
+                            sgtl = true
+                        end
+                        if string.split(line, "ReplicatedStorage")[2] and sgtl then
+                            repline = line
+                            break
+                        end
+                    end
+                    local remotename = string.split(string.split(repline, ".")[2], ":")[1]
+                    local remote = game.ReplicatedStorage[remotename]
+                    table.insert(sgn, glov.Name)
+                    table.insert(sgr, remote)
+                elseif #lstedplrs > 0 then
+                    for _, player in pairs(lstedplrs) do
+                        local remote = sgr[table.find(sgn, glov.Name)]
+                        remote:FireServer(player.Character.Head)
+                    end
+                end
+            end
+        end
+        if settings["anti nametag"] == true then
+            if lp.Character.Head:FindFirstChild("Nametag") then
+                lp.Character.Head.Nametag:Destroy()
+            end
+        end
+        if settings["anti squid"] == true then
+            if lp.PlayerGui:FindFirstChild("SquidInk") then
+                lp.PlayerGui.SquidInk:Destroy()
+            end
+        end
+        if settings["anti mail"] == true then
+            if lp.PlayerGui:FindFirstChild("MailPopup") then
+                lp.PlayerGui.MailPopup:Destroy()
+            end
+        end
+        if settings["anti reaper"] == true then
+            if lp.Character:FindFirstChild("DeathMark") and game.Lighting:FindFirstChild("DeathMarkColorCorrection") then
+                game.ReplicatedStorage.ReaperGone:FireServer(lp.Character.DeathMark)
+                game.Lighting.DeathMarkColorCorrection:Destroy()
+            end
+        end
+        if settings["tycoon autopress"] == true then
+            for _, tycoon in pairs(workspace:GetChildren()) do
+                if string.find(tycoon.Name, "ÅTycoon") then
+                    if tycoon:FindFirstChild("Click") then
+                        fireclickdetector(tycoon.Click.ClickDetector, 0)
+                        fireclickdetector(tycoon.Click.ClickDetector, 1)
+                    end
+                end
+            end
+        end
+        if settings["auto jetorb"] == true then
+            for _, jo in pairs(workspace:GetChildren()) do
+                if jo.name == "JetOrb" then
+                    jo.Position = lp.Character.HumanoidRootPart.Position
+                end
+            end
+        end
+        if settings["auto phaseorb"] == true then
+            for _, po in pairs(workspace:GetChildren()) do
+                if po.name == "PhaseOrb" then
+                    po.Position = lp.Character.HumanoidRootPart.Position
+                end
+            end
+        end
+        if settings["auto slapple"] == true then
+            for _, slapple in pairs(workspace.Arena.island5.Slapples:GetChildren()) do
+                if slapple.Glove.Transparency == 0 then
+                    firetouchinterest(lp.Character.Head, slapple.Glove, 0)
+                    firetouchinterest(lp.Character.Head, slapple.Glove, 1)
+                end
+            end
+        end
+        if settings["anti lighting"] == true then
+            for _, thing in pairs(game.Lighting:GetChildren()) do
+                if thing.Name ~= "Sky" then
+                    thing:Destroy()
+                end
+            end
+            game.Lighting.ExposureCompensation = 0
+        end
+        if settings["auto kick"] == true then
+            for _, player in pairs(game.Players:GetChildren()) do
+                if player ~= lp then
+                    if player:GetRankInGroup(9950771) > 6 then
+                        lp:Kick("Moderator is ingame. Username: "..player.Name)
+                    end
+                end
+            end
+        end
+        if settings["anti identity"] == true then
+            if lp.Character:FindFirstChildOfClass("Accessory") then
+                lp.Character:FindFirstChildOfClass("Accessory"):Destroy()
+            end
+            if lp.Character:FindFirstChildOfClass("Shirt") then
+                lp.Character:FindFirstChildOfClass("Shirt"):Destroy()
+            end
+            if lp.Character:FindFirstChildOfClass("Pants") then
+                lp.Character:FindFirstChildOfClass("Pants"):Destroy()
+            end
+            if lp.Character:FindFirstChildOfClass("ShirtGraphic") then
+                lp.Character:FindFirstChildOfClass("ShirtGraphic"):Destroy()
+            end
+        end
+        for _, plr in pairs(game.Players:GetChildren()) do
+            local r = plr.Character:FindFirstChild("rock")
+            if r then
+                if r.Size.Y > 8 then
+                    r.CanTouch = not settings["anti megarock"]
+                end
+            end
+        end
+        if settings["anti defense"] == true then
+            for _, defense in pairs(workspace:GetChildren()) do
+                if string.split(defense.Name, "ÅBarrier")[2] and defense.CanCollide == true then
+                    defense.CanCollide = false
+                end
+            end
+        end
+        if settings["anti pusher"] == true then
+            for _, wall in pairs(workspace:GetChildren()) do
+                if wall.Name == "wall" and wall.CanCollide == true then
+                    wall.CanCollide = false
+                end
+            end
+        end
+        if settings["anti rocky"] == true then
+            if lp.Character:FindFirstChild("rock") and lp.leaderstats.Glove.Value ~= "Diamond" then
+                lp.Character.rock.Weld:Destroy()
+                lp.Character.rock.CanCollide = false
+                lp.Character.rock.Transparency = 1
+            end
+        end
+        if settings["anti stun"] then
+            if lp.Character.Ragdolled.Value == false then
+                hm.PlatformStand = false
+            end
+        end
+        if settings["anti zahando"] then
+            for _, part in pairs(workspace:GetChildren()) do
+                if part.Name == "Part" and part ~= tavblock and part ~= mavblock and part ~= bblock then
+                    part:Destroy()
+                end
+            end
+        end
+        if settings["anti brick"] == true then
+            for _, brick in pairs(workspace:GetChildren()) do
+                if brick:IsA("UnionOperation") and brick.CanTouch == true then
+                    brick.CanTouch = false
+                end
+            end
+        end
+        if settings["anti bubble"] == true then
+            for _, bub in pairs(workspace:GetChildren()) do
+                if bub.Name == "BubbleObject" then
+                    if bub:FindFirstChild("Weld") then
+                        if bub.Weld.Part1.Parent == lp.Character then
+                            bub.Weld:Destroy()
+                        end
+                    end
+                end
+            end
+        end
+        if settings["anti jack"] == true then
+            for _, jack in pairs(workspace:GetChildren()) do
+                if jack.Name == "Pumpkin" and jack.CanTouch == true then
+                    jack.CanTouch = false
+                end
+            end
+        end
+        if settings["anti jack"] == true then
+            if lp.Character:FindFirstChild("ice") then
+                lp.Character.ice:Destroy()
+            end
+        end
+        if settings["inf golden"] then
+            if golden == false then
+                game.ReplicatedStorage.Goldify:FireServer(true)
+                golden = true
+            end
+        else
+            if golden == true then
+                game.ReplicatedStorage.Goldify:FireServer(false, BrickColor.new(0))
+                golden = false
+            end
+        end
+        if settings["anti brazil"] == true then
+            for _, part in pairs(brazil:GetChildren()) do
+                if part.CanTouch == true then
+                    part.CanTouch = false
+                end
+            end
+        else
+            for _, part in pairs(brazil:GetChildren()) do
+                if part.CanTouch == false then
+                    part.CanTouch = true
+                end
+            end
+        end
+        if settings["anti cheeky"] == true then
+            for _, player in pairs(game.Players:GetChildren()) do
+                if player.Character:FindFirstChild("ball") then
+                    player.Character.ball.CanCollide = false
+                end
+            end
+        end
+        cod.CanTouch = not settings["anti cod"]
+        tavblock.CanCollide = settings["tournament antivoid"]
+        mavblock.CanCollide = settings["anti void"]
+        mavblock.Position = Vector3.new(lp.Character.HumanoidRootPart.Position.X, -20, lp.Character.HumanoidRootPart.Position.Z)
+    end)
+end
